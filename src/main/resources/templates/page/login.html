@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!--/*
+layout 적용시 아래 속성 html 태그에 추가
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+*/-->
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <form id="frmLogin" th:action="@{/sample/login}" method="post">
+        <div>
+        <label><input type="text" name="userId" /></label>
+        </div>
+        <div>
+        <label><input type="text" name="userPwd" /></label>
+        </div>
+
+        <button type="submit">전송</button>
+    </form>
+
+    <div th:text="${isLogin}" th:if="${not #strings.isEmpty(isLogin)}"></div>
+</body>
+</html>
