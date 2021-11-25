@@ -46,9 +46,9 @@ public class PathVariableWithBodyArgumentResolver implements HandlerMethodArgume
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
     
-        Map<String, String> params = getUriTemplateParams(webRequest);
+        Map<String, String> params = getBodyParams(webRequest);
     
-        params.putAll(getBodyParams(webRequest));
+        params.putAll(getUriTemplateParams(webRequest));
         
         return objectMapper.convertValue(params, parameter.getParameterType());
     }
