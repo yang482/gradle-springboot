@@ -20,12 +20,12 @@ public class SampleWebController {
         model.addAttribute("var2", "Variable for html from Controller");
         model.addAttribute("var3", "<b>Variable with html tag</b>");
         
-        return "sample/sampleMain";
+        return "page/sample/sampleMain";
     }
     
     @GetMapping("/login")
     public String loginPage() {
-        return "login";
+        return "page/login";
     }
     
     @PostMapping("/login")
@@ -34,6 +34,6 @@ public class SampleWebController {
         
         model.addAttribute("isLogin", "Login complete");
         
-        return "login";
+        return "page/login";
     }
 }
