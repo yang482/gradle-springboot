@@ -6,6 +6,12 @@
 >
 <head>
   <title>Sample Main</title>
+
+  <th:block layout:fragment="pageCss">
+  <style>
+
+  </style>
+  </th:block>
 </head>
 <body>
 <th:block layout:fragment="content">
@@ -18,7 +24,7 @@
   <div th:text="${var3}"></div>
   <div th:utext="${var3}"></div>
 </th:block>
-<th:block layout:fragment="pageScript">
+<th:block layout:fragment="onlaodScript">
   <script th:inline="javascript">
     console.log('it will be run.');
 
