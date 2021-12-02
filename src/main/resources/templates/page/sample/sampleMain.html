@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Main</title>
+
+    <!--
+     - th:inline="javascript"
+      : It can use thymeleaf variable.
+    -->
+    <script th:inline="javascript">
+        const VAR_1 = /*[[ ${var1} ]]*/;
+
+        console.log(VAR_1);
+    </script>
+</head>
+<body>
+    <div>
+        If you need a purely variable Text... you can use th:block. :
+        <th:block th:text="${var2}"></th:block>
+    </div>
+
+
+    <div>Difference between th:text and th:utext</div>
+    <div th:text="${var3}"></div>
+    <div th:utext="${var3}"></div>
+</body>
+</html>

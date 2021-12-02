@@ -13,18 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/sample")
 public class SampleWebController {
     
+    @GetMapping({"", "/"})
+    public String sampleMain(Model model) {
+        
+        model.addAttribute("var1", "Variable for script from Controller");
+        model.addAttribute("var2", "Variable for html from Controller");
+        model.addAttribute("var3", "<b>Variable with html tag</b>");
+        
+        return "sample/sampleMain";
+    }
     
     @GetMapping("/login")
     public String loginPage() {
-        return "page/login";
+        return "login";
     }
     
     @PostMapping("/login")
     public String login(Model model) {
         
         
-        model.addAttribute("isLogin", "로그인 컨트롤러 수행 완료");
+        model.addAttribute("isLogin", "Login complete");
         
-        return "page/login";
+        return "login";
     }
 }
