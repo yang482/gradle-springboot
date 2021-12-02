@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class SampleApiController {
     
     @RequestMapping("/{id}")
-    public String getSample(@PathVariableWithBody Sample sample) {
+    public Sample getSample(@PathVariableWithBody Sample sample) {
         System.out.println(sample);
         //System.out.println(bodySample);
-        return "";
+        return sample;
     }
 }
