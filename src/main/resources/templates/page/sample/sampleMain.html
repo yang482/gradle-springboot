@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<!--/*
-layout 적용시 아래 속성 html 태그에 추가
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-*/-->
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default"
+>
 <head>
-    <meta charset="UTF-8">
-    <title>Sample Main</title>
-
-    <!--
-     - th:inline="javascript"
-      : It can use thymeleaf variable.
-    -->
-    <script th:inline="javascript">
-        const VAR_1 = /*[[ ${var1} ]]*/;
-
-        console.log(VAR_1);
-    </script>
+  <title>Sample Main</title>
 </head>
 <body>
-    <div>
-        If you need a purely variable Text... you can use th:block. :
-        <th:block th:text="${var2}"></th:block>
-    </div>
+<th:block layout:fragment="content">
+  <div>
+    If you need a purely variable Text... you can use th:block. :
+    <th:block th:text="${var2}"></th:block>
+  </div>
 
+  <div>Difference between th:text and th:utext</div>
+  <div th:text="${var3}"></div>
+  <div th:utext="${var3}"></div>
+</th:block>
+<th:block layout:fragment="pageScript">
+  <script th:inline="javascript">
+    console.log('it will be run.');
 
-    <div>Difference between th:text and th:utext</div>
-    <div th:text="${var3}"></div>
-    <div th:utext="${var3}"></div>
+    const VAR_1 = /*[[ ${var1} ]]*/ 'this value will be remove.';
+
+    console.log(VAR_1);
+  </script>
+</th:block>
 </body>
 </html>
