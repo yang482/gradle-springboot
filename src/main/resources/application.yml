@@ -7,13 +7,17 @@ spring:
     # ex)
     # driver-class-name: org.mariadb.jdbc.Driver
     # url: jdbc:mariadb://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
-    # username: user_account
-    # password: password
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
-    username: username
-    password: password
 
+    hikari:
+      # TODO Type hikaricp option
+      # ex)
+      # username: user_account
+      # password: password
+      username: username
+      password: password
+      maximum-pool-size: 10
 
 ---
 spring:
