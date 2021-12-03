@@ -44,6 +44,7 @@ public class PathVariableWithBodyArgumentResolver extends AbstractMessageConvert
         return parameter.hasParameterAnnotation(PathVariableWithBody.class);
     }
     
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
@@ -51,20 +52,21 @@ public class PathVariableWithBodyArgumentResolver extends AbstractMessageConvert
         parameter = parameter.nestedIfOptional();
         Object arg = readWithMessageConverters(webRequest, parameter, Map.class);
     
-        Map<String, String> params = new LinkedHashMap<>((Map)arg);
+        LinkedHashMap params = new LinkedHashMap();
+        params.putAll((Map)arg);
         params.putAll(getUriTemplateParams(webRequest));
         
         return objectMapper.convertValue(params, parameter.getParameterType());
     }
     
-    @SuppressWarnings("unchecked")
-    private Map<String, String> getUriTemplateParams(NativeWebRequest webRequest) {
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private Map getUriTemplateParams(NativeWebRequest webRequest) {
     
         Map<String, String> uriTemplateMap = (Map<String, String>) webRequest.getAttribute(
                 HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE, RequestAttributes.SCOPE_REQUEST);
                 
         if (!CollectionUtils.isEmpty(uriTemplateMap)) {
-            return new LinkedHashMap<>(uriTemplateMap);
+            return uriTemplateMap;
         }
         else {
             return Collections.emptyMap();
