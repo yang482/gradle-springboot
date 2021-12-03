@@ -1,6 +1,16 @@
 server:
   port: 8080
 
+mybatis:
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+  type-aliases-package: kr.co.bizu.base.**.dto
+  configuration:
+    multiple-result-sets-enabled: false
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    jdbc-type-for-null: varchar
+    default-fetch-size: 500
 
 ---
 spring:
@@ -14,3 +24,22 @@ spring:
 
   thymeleaf:
     cache: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/sample;MODE=MYSQL
+    hikari:
+      username: sa
+      password:
+      maximum-pool-size: 10
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:h2/schema.sql
+      data-locations: classpath:h2/data.sql
